@@ -1,0 +1,55 @@
+{ "extends": "eslint-config-airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "arrow-body-style": 0,
+    "arrow-parens": ["error", "as-needed", { "requireForBlockBody": false }],
+    "comma-dangle": ["error", "never"],
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "indent": [0, 4, {"SwitchCase": 1}],
+    "jsx-a11y/no-static-element-interactions": 0,
+    "max-len": 0,
+    "new-cap": 0,
+    "no-case-declarations": 0,
+    "no-console": 0,
+    "no-debugger": 0,
+    "no-prototype-builtins": 0,
+    "no-underscore-dangle": 0,
+    "no-unused-expressions": 0,
+    "no-unused-vars": ["error", { "varsIgnorePattern": "colors" }],
+    "react/forbid-prop-types": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-indent": [2, 4],
+    "react/jsx-indent-props": [2, 4],
+    "react/no-danger": ["off"],
+    "react/no-multi-comp": 0,
+    "react/prop-types": "off",
+    "import/prefer-default-export": 0,
+    "react/prefer-stateless-function": 0,
+    "global-require": "off"
+  },
+  "plugins": [
+    "react", "import"
+  ],
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolve": {
+      "moduleDirectory": ["node_modules", "src", "src/utils"]
+    }
+  },
+  "globals": {
+    "__DEVELOPMENT__": true,
+    "__CLIENT__": true,
+    "__SERVER__": true,
+    "webpackIsomorphicTools": true,
+    "sinon": true
+  }
+}
