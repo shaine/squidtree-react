@@ -24,7 +24,10 @@ var externalMatchers = [
     /farmhash/,
     /^express/,
     /isomorphic-fetch/,
-    /proxy-agent/
+    /proxy-agent/,
+    /sodium/,
+    /mongoose/,
+    /require_optional/
 ];
 var nodeModules = {};
 fs.readdirSync('node_modules')
