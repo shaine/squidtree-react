@@ -29,6 +29,9 @@ if (!port) {
 app.use(compression());
 
 // Use static files
+app.use('/.well-known', Express.static(path.join('.well-known'), {
+    dotfiles: 'allow'
+}));
 app.use('/public', Express.static(path.join('public')));
 
 app.use((req, res, next) => {
