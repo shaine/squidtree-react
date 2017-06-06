@@ -10,12 +10,6 @@ import {
 
 let flags = []; // eslint-disable-line
 
-flags = flags.concat(registerFlags({
-    name: 'perf',
-    type: Boolean,
-    description: 'Enables --prof node profiling flag for production server run'
-}));
-
 export { flags }; // eslint-disable-line
 
 function main() {
@@ -24,21 +18,7 @@ function main() {
     console.log('');
     console.log('Running production server'.blue);
 
-    let interpreter = 'node';
-    if (options.inspector) {
-        interpreter = './node_modules/.bin/node-debug -b false';
-        console.log(
-            'Warning: Starting in debugger mode. Expect performance to be '.yellow +
-            '30% of what it would otherwise be.'.yellow
-        );
-    }
-
-    let serverCmd = './servers/prod-server.js';
-    if (options.perf) {
-        // I can't believe node cares about the order flags are passed
-        serverCmd = `--prof ${serverCmd}`;
-    }
-    serverCmd = `${interpreter} ${serverCmd}`;
+    const serverCmd = 'node ./servers/prod-server.js';
 
     console.log(serverCmd.yellow);
     exec(serverCmd, {

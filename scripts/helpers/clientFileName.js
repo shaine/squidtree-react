@@ -1,7 +1,7 @@
 const getClientName = require('./clientName');
 
-module.exports = function clientFileName(type, dropPrerelease) {
-    const clientName = getClientName(dropPrerelease);
+module.exports = function clientFileName(type) {
+    const clientName = getClientName();
 
     return `${clientName}.min.${type}`;
 };
