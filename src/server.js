@@ -18,6 +18,7 @@ import getRoutes from 'routes';
 import ConnectedHtml, { Html } from 'helpers/Html';
 import ErrorPage from 'App/Error/Error';
 import App from 'App/App';
+import dbConnect from 'helpers/db';
 
 const app = new Express();
 const server = new http.Server(app);
@@ -33,6 +34,9 @@ app.use('/.well-known', Express.static(path.join('.well-known'), {
     dotfiles: 'allow'
 }));
 app.use('/public', Express.static(path.join('public')));
+
+// app.post('/api/login');
+// app.post('/api/logout');
 
 app.use((req, res, next) => {
     if (__DEVELOPMENT__) {
@@ -103,9 +107,11 @@ app.use((req, res) => renderError(req, res, 404, 'Not Found'));
 app.use((error, req, res, next) => // eslint-disable-line
     console.error(error) || renderError(req, res, 500, 'Internal Server Error'));
 
-server.listen(port, err => {
-    if (err) {
-        console.error(err, true);
-    }
-    console.info(`----\n==> ✅  Server is running on port ${port}.`);
+dbConnect(() => {
+    server.listen(port, err => {
+        if (err) {
+            console.error(err, true);
+        }
+        console.info(`==> ✅  Server is running on port ${port}.`);
+    });
 });
