@@ -1,3 +1,4 @@
 {
-    "dbUri": "mongodb://localhost:27017/squidtree_discord"
+    "dbUri": "mongodb://localhost:27017/squidtree_discord",
+    "sessionSecret": ""
 }

@@ -12,7 +12,7 @@ import {
 const sanityCmds = [
     './scripts/security.js',
     './scripts/lint.js',
-    './scripts/karma.js'
+    './scripts/mocha.js'
 ];
 
 let flags = []; // eslint-disable-line

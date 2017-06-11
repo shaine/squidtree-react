@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const _omit = require('lodash/omit');
+const _pick = require('lodash/pick');
 const {
     hashPassword,
     verifyPassword
@@ -14,7 +14,16 @@ const userSchema = mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-exports.getUserByEmailAndPassword = function getUserByEmailAndPassword(email, password, cb) {
+function getUserDataFromUserModel(user) {
+    return _pick(user, [
+        '_id',
+        'name',
+        'email'
+    ]);
+};
+exports.getUserDataFromUserModel = getUserDataFromUserModel;
+
+function getUserByEmailAndPassword(email, password, cb) {
     const passwordHash = hashPassword(password);
 
     User.findOne({
@@ -24,15 +33,16 @@ exports.getUserByEmailAndPassword = function getUserByEmailAndPassword(email, pa
     (error, user) => {
         if (error) {
             cb(error);
-        } else if (verifyPassword(password, user.passwordHash)) {
-            cb(null, _omit(user, 'passwordHash'));
+        } else if (user && verifyPassword(password, user.passwordHash)) {
+            cb(null, getUserDataFromUserModel(user));
         } else {
             cb(new Error('Email or password not valid'));
         }
     });
 };
+exports.getUserByEmailAndPassword = getUserByEmailAndPassword;
 
-exports.createUser = function createUser({ name, email, password }, cb) {
+function createUser({ name, email, password }, cb) {
     const passwordHash = hashPassword(password);
 
     const userInfo = {
@@ -44,3 +54,4 @@ exports.createUser = function createUser({ name, email, password }, cb) {
     const user = new User(userInfo);
     user.save(cb);
 };
+exports.createUser = createUser;

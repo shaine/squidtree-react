@@ -19,14 +19,38 @@ const passwordStub = {
     hashPassword: sinon.stub()
 };
 const {
+    createUser,
     getUserByEmailAndPassword,
-    createUser
+    getUserDataFromUserModel
 } = proxyquire('./User', {
     mongoose: mongooseStub,
     '../helpers/password': passwordStub
 });
 
 describe('User', () => {
+    describe('getUserDataFromUserModel', () => {
+        // Set up
+        const userModel = {
+            _id: '123',
+            name: 'foo',
+            email: 'bar',
+            passwordHash: 'hash 123',
+            createdAt: 'time',
+            foo: 'bar'
+        };
+
+        // Run unit
+        const user = getUserDataFromUserModel(userModel);
+
+        // Verify expectations
+        expect(user)
+            .to.eql({
+                _id: '123',
+                name: 'foo',
+                email: 'bar'
+            });
+    });
+
     describe('getUserByEmailAndPassword', () => {
         afterEach(() => {
             UserStub.findOne.reset();
@@ -56,7 +80,7 @@ describe('User', () => {
             // Set up
             const user = {
                 passwordHash: 'hash 123',
-                foo: 'bar'
+                _id: 'bar'
             };
             UserStub.findOne
                 .withArgs({
@@ -71,10 +95,10 @@ describe('User', () => {
                 // Verify expectations
                 expect(error)
                     .to.be.null;
-                expect(user)
-                    .to.eql({
-                        foo: 'bar'
-                    });
+                expect(user._id)
+                    .to.equal('bar');
+                expect(user.passwordHash)
+                    .to.be.undefined;
                 done();
             });
         });
