@@ -2,7 +2,6 @@ const { describe, it } = require('mocha');
 const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
-const proxyquire = require('proxyquire');
 const logoutController = require('./logoutController');
 
 const { expect } = chai;

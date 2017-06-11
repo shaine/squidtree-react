@@ -20,12 +20,10 @@ function getUserDataFromUserModel(user) {
         'name',
         'email'
     ]);
-};
+}
 exports.getUserDataFromUserModel = getUserDataFromUserModel;
 
 function getUserByEmailAndPassword(email, password, cb) {
-    const passwordHash = hashPassword(password);
-
     User.findOne({
         email
     },
@@ -39,7 +37,7 @@ function getUserByEmailAndPassword(email, password, cb) {
             cb(new Error('Email or password not valid'));
         }
     });
-};
+}
 exports.getUserByEmailAndPassword = getUserByEmailAndPassword;
 
 function createUser({ name, email, password }, cb) {
@@ -53,5 +51,5 @@ function createUser({ name, email, password }, cb) {
 
     const user = new User(userInfo);
     user.save(cb);
-};
+}
 exports.createUser = createUser;

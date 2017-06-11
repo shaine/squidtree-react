@@ -1,5 +1,5 @@
 module.exports = function apiController(req, res, next) {
-    const acceptsJson = req.headers['accepts'] === 'application/json';
+    const acceptsJson = req.headers.accepts === 'application/json';
     const contentTypeJson = req.headers['content-type'] === 'application/json';
 
     if (acceptsJson && contentTypeJson) {

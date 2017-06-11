@@ -3,9 +3,7 @@ import colors from 'colors';
 import exec from '../helpers/exec';
 import {
     getHelp,
-    getIsHelp,
-    getOptions,
-    registerFlags
+    getIsHelp
 } from '../helpers/options';
 
 let flags = []; // eslint-disable-line
@@ -13,8 +11,6 @@ let flags = []; // eslint-disable-line
 export { flags }; // eslint-disable-line
 
 function main() {
-    const options = getOptions();
-
     console.log('');
     console.log('Running production server'.blue);
 

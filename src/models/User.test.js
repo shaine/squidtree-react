@@ -78,7 +78,7 @@ describe('User', () => {
 
         it('returns a matching user', done => {
             // Set up
-            const user = {
+            const userModel = {
                 passwordHash: 'hash 123',
                 _id: 'bar'
             };
@@ -86,7 +86,7 @@ describe('User', () => {
                 .withArgs({
                     email: 'foo@test.com'
                 }, 'name email passwordHash')
-                .callsArgWith(2, null, user);
+                .callsArgWith(2, null, userModel);
             passwordStub.verifyPassword.withArgs('123', 'hash 123')
                 .returns(true);
 
@@ -105,7 +105,7 @@ describe('User', () => {
 
         it('returns a not found error if no matches', done => {
             // Set up
-            const user = {
+            const userModel = {
                 passwordHash: 'hash 098',
                 foo: 'bar'
             };
@@ -113,7 +113,7 @@ describe('User', () => {
                 .withArgs({
                     email: 'foo@test.com'
                 }, 'name email passwordHash')
-                .callsArgWith(2, null, user);
+                .callsArgWith(2, null, userModel);
             passwordStub.verifyPassword.withArgs('123', 'hash 098')
                 .returns(false);
 

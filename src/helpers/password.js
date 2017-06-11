@@ -1,7 +1,6 @@
 const sodium = require('sodium').api;
 
 exports.hashPassword = function hashPassword(password) {
-    const hash = new Buffer(sodium.crypto_pwhash_STRBYTES);
     const passwordBuffer = new Buffer(password);
 
     const hashBuffer = sodium.crypto_pwhash_str(
@@ -11,11 +10,11 @@ exports.hashPassword = function hashPassword(password) {
     );
 
     return hashBuffer.toString();
-}
+};
 
 exports.verifyPassword = function verifyPassword(password, passwordHash) {
     return sodium.crypto_pwhash_str_verify(
         new Buffer(passwordHash),
         new Buffer(password)
     );
-}
+};

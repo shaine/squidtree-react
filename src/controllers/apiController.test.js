@@ -12,7 +12,7 @@ describe('apiController', () => {
         // Set up
         const req = {
             headers: {
-                'accepts': 'application/json',
+                accepts: 'application/json',
                 'content-type': 'application/json'
             }
         };
@@ -35,7 +35,7 @@ describe('apiController', () => {
         // Set up
         const req = {
             headers: {
-                'accepts': 'application/json',
+                accepts: 'application/json',
                 'content-type': 'application/text'
             }
         };
@@ -64,7 +64,7 @@ describe('apiController', () => {
         // Set up
         const req = {
             headers: {
-                'accepts': 'application/text',
+                accepts: 'application/text',
                 'content-type': 'application/json'
             }
         };

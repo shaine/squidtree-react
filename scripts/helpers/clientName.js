@@ -1,4 +1,3 @@
-const semver = require('semver');
 const pkg = require('../../package');
 
 module.exports = function getClientName() {

@@ -42,7 +42,7 @@ const sessionStore = new (mongoSession(session))({
 sessionStore.on('error', error => {
     console.error(error);
 });
-app.set('trust proxy', 1) // trust first proxy
+app.set('trust proxy', 1); // trust first proxy
 app.use(session({
     secret: config.sessionSecret,
     resave: false,
