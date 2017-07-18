@@ -10,6 +10,7 @@ var Visualizer = require('webpack-visualizer-plugin');
 var serverName = require('../scripts/helpers/serverName');
 var clientName = require('../scripts/helpers/clientName')();
 var clientFileName = require('../scripts/helpers/clientFileName');
+var config = require('../config.json');
 
 var publicAssetsPath = path.join(__dirname, '../public');
 var privateAssetsPath = path.join(__dirname, '../private');
@@ -38,9 +39,9 @@ fs.readdirSync('node_modules')
     });
 });
 
-var port = process.env.PORT;
+var port = process.env.PORT || config.port;
 if (!port) {
-    throw new Error('No port specified! Please re-run command with a PORT env var present.');
+    throw new Error('No port specified! Please re-run command with a PORT env var present or a port in config.json.');
 }
 
 var baseWebpackConfig = {

@@ -5,21 +5,27 @@ const {
     verifyPassword
 } = require('../helpers/password');
 
+const ROLE_ADMIN = 'admin';
+const USER_FIELDS = [
+    '_id',
+    'name',
+    'email',
+    'role'
+];
+exports.userFields = USER_FIELDS;
+
 const userSchema = mongoose.Schema({
     name: String,
     email: String,
     passwordHash: String,
+    role: String,
     createdAt: { type: Date, default: Date.now }
 });
 
 const User = mongoose.model('User', userSchema);
 
-function getUserDataFromUserModel(user) {
-    return _pick(user, [
-        '_id',
-        'name',
-        'email'
-    ]);
+function getUserDataFromUserModel(userModel) {
+    return _pick(userModel, USER_FIELDS);
 }
 exports.getUserDataFromUserModel = getUserDataFromUserModel;
 
@@ -27,12 +33,12 @@ function getUserByEmailAndPassword(email, password, cb) {
     User.findOne({
         email
     },
-    'name email passwordHash',
-    (error, user) => {
+    USER_FIELDS.join(' '),
+    (error, userModel) => {
         if (error) {
             cb(error);
-        } else if (user && verifyPassword(password, user.passwordHash)) {
-            cb(null, getUserDataFromUserModel(user));
+        } else if (userModel && verifyPassword(password, userModel.passwordHash)) {
+            cb(null, getUserDataFromUserModel(userModel));
         } else {
             cb(new Error('Email or password not valid'));
         }
@@ -49,7 +55,12 @@ function createUser({ name, email, password }, cb) {
         passwordHash
     };
 
-    const user = new User(userInfo);
-    user.save(cb);
+    const userModel = new User(userInfo);
+    userModel.save(cb);
 }
 exports.createUser = createUser;
+
+function isAdmin(user = {}) {
+    return user.role === ROLE_ADMIN;
+}
+exports.isAdmin = isAdmin;

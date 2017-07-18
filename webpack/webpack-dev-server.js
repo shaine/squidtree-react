@@ -1,16 +1,17 @@
 var Express = require('express');
 var webpack = require('webpack');
+var config = require('../config.json');
 
 var webpackConfig = require('./dev.config');
 var compiler = webpack(webpackConfig);
 
-var host = process.env.DEV_HOST;
+var host = process.env.DEV_HOST || config.devHost;
 if (!host) {
-    throw new Error('No host specified! Please re-run command with a DEV_HOST env var present.');
+    throw new Error('No host specified! Please re-run command with a DEV_HOST env var present or a devHost in config.json.');
 }
-var port = process.env.DEV_PORT;
+var port = process.env.DEV_PORT || config.devPort;
 if (!port) {
-    throw new Error('No port specified! Please re-run command with a DEV_PORT env var present.');
+    throw new Error('No port specified! Please re-run command with a DEV_PORT env var present or a devPort in config.json.');
 }
 
 var serverOptions = {

@@ -3,7 +3,6 @@ const User = require('../models/User');
 
 module.exports = function loginController(req, res) {
     const session = req.session;
-    console.log(req.body);
     const {
         email,
         password

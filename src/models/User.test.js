@@ -21,13 +21,28 @@ const passwordStub = {
 const {
     createUser,
     getUserByEmailAndPassword,
-    getUserDataFromUserModel
+    getUserDataFromUserModel,
+    isAdmin,
+    userFields
 } = proxyquire('./User', {
     mongoose: mongooseStub,
     '../helpers/password': passwordStub
 });
 
+const userFieldsSelector = userFields.join(' ');
+
 describe('User', () => {
+    it('defines the schema correctly', () => {
+        expect(mongooseStub.Schema)
+            .to.have.been.calledWith({
+                name: String,
+                email: String,
+                passwordHash: String,
+                role: String,
+                createdAt: { type: Date, default: Date.now }
+            });
+    });
+
     describe('getUserDataFromUserModel', () => {
         // Set up
         const userModel = {
@@ -36,6 +51,7 @@ describe('User', () => {
             email: 'bar',
             passwordHash: 'hash 123',
             createdAt: 'time',
+            role: 'admin',
             foo: 'bar'
         };
 
@@ -47,7 +63,8 @@ describe('User', () => {
             .to.eql({
                 _id: '123',
                 name: 'foo',
-                email: 'bar'
+                email: 'bar',
+                role: 'admin'
             });
     });
 
@@ -62,7 +79,7 @@ describe('User', () => {
             UserStub.findOne
                 .withArgs({
                     email: 'foo@test.com'
-                }, 'name email passwordHash')
+                }, userFieldsSelector)
                 .callsArgWith(2, 'foo error');
 
             // Run unit
@@ -85,7 +102,7 @@ describe('User', () => {
             UserStub.findOne
                 .withArgs({
                     email: 'foo@test.com'
-                }, 'name email passwordHash')
+                }, userFieldsSelector)
                 .callsArgWith(2, null, userModel);
             passwordStub.verifyPassword.withArgs('123', 'hash 123')
                 .returns(true);
@@ -112,7 +129,7 @@ describe('User', () => {
             UserStub.findOne
                 .withArgs({
                     email: 'foo@test.com'
-                }, 'name email passwordHash')
+                }, userFieldsSelector)
                 .callsArgWith(2, null, userModel);
             passwordStub.verifyPassword.withArgs('123', 'hash 098')
                 .returns(false);
@@ -156,6 +173,20 @@ describe('User', () => {
             // Tear down
             passwordStub.hashPassword.reset();
             UserStub.reset();
+        });
+    });
+
+    describe('isAdmin', () => {
+        it('returns true if the user has an admin role', () => {
+            expect(isAdmin({
+                role: 'admin'
+            })).to.be.true;
+        });
+
+        it('returns false if the user does not have an admin role', () => {
+            expect(isAdmin({
+                role: 'not admin'
+            })).to.be.false;
         });
     });
 });
