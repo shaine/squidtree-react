@@ -29,9 +29,9 @@ import config from '../config.json';
 
 const app = new Express();
 const server = new http.Server(app);
-const port = process.env.PORT;
+const port = process.env.PORT || config.port;
 if (!port) {
-    throw new Error('No port specified! Please re-run command with a PORT env var present.');
+    throw new Error('No port specified! Please re-run command with a PORT env var present or a port in config.json.');
 }
 
 // Set up session

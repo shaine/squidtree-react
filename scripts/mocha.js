@@ -25,7 +25,7 @@ function main() {
         console.log('');
         console.log('Running unit tests'.blue);
 
-        const mochaCmd = './node_modules/.bin/mocha -w -R spec src/**/*.test.js';
+        const mochaCmd = './node_modules/.bin/mocha -w -R inverse-dot src/**/*.test.js';
         console.log(mochaCmd.yellow);
 
         exec(mochaCmd);

@@ -6,8 +6,10 @@ var path = require('path');
 var webpack = require('webpack');
 var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 var assetsPath = path.resolve(__dirname, '../public');
-var host = process.env.DEV_HOST;
 var clientName = require('../scripts/helpers/clientName')();
+var config = require('../config.json');
+
+var host = process.env.DEV_HOST || config.devHost;
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
