@@ -19,14 +19,38 @@ const passwordStub = {
     hashPassword: sinon.stub()
 };
 const {
+    createUser,
     getUserByEmailAndPassword,
-    createUser
+    getUserDataFromUserModel
 } = proxyquire('./User', {
     mongoose: mongooseStub,
     '../helpers/password': passwordStub
 });
 
 describe('User', () => {
+    describe('getUserDataFromUserModel', () => {
+        // Set up
+        const userModel = {
+            _id: '123',
+            name: 'foo',
+            email: 'bar',
+            passwordHash: 'hash 123',
+            createdAt: 'time',
+            foo: 'bar'
+        };
+
+        // Run unit
+        const user = getUserDataFromUserModel(userModel);
+
+        // Verify expectations
+        expect(user)
+            .to.eql({
+                _id: '123',
+                name: 'foo',
+                email: 'bar'
+            });
+    });
+
     describe('getUserByEmailAndPassword', () => {
         afterEach(() => {
             UserStub.findOne.reset();
@@ -54,15 +78,15 @@ describe('User', () => {
 
         it('returns a matching user', done => {
             // Set up
-            const user = {
+            const userModel = {
                 passwordHash: 'hash 123',
-                foo: 'bar'
+                _id: 'bar'
             };
             UserStub.findOne
                 .withArgs({
                     email: 'foo@test.com'
                 }, 'name email passwordHash')
-                .callsArgWith(2, null, user);
+                .callsArgWith(2, null, userModel);
             passwordStub.verifyPassword.withArgs('123', 'hash 123')
                 .returns(true);
 
@@ -71,17 +95,17 @@ describe('User', () => {
                 // Verify expectations
                 expect(error)
                     .to.be.null;
-                expect(user)
-                    .to.eql({
-                        foo: 'bar'
-                    });
+                expect(user._id)
+                    .to.equal('bar');
+                expect(user.passwordHash)
+                    .to.be.undefined;
                 done();
             });
         });
 
         it('returns a not found error if no matches', done => {
             // Set up
-            const user = {
+            const userModel = {
                 passwordHash: 'hash 098',
                 foo: 'bar'
             };
@@ -89,7 +113,7 @@ describe('User', () => {
                 .withArgs({
                     email: 'foo@test.com'
                 }, 'name email passwordHash')
-                .callsArgWith(2, null, user);
+                .callsArgWith(2, null, userModel);
             passwordStub.verifyPassword.withArgs('123', 'hash 098')
                 .returns(false);
 

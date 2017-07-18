@@ -19,6 +19,13 @@ import ConnectedHtml, { Html } from 'helpers/Html';
 import ErrorPage from 'App/Error/Error';
 import App from 'App/App';
 import dbConnect from 'helpers/db';
+import apiController from 'controllers/apiController';
+import loginController from 'controllers/loginController';
+import logoutController from 'controllers/logoutController';
+import session from 'express-session';
+import mongoSession from 'connect-mongodb-session';
+import bodyParser from 'body-parser';
+import config from '../config.json';
 
 const app = new Express();
 const server = new http.Server(app);
@@ -27,7 +34,25 @@ if (!port) {
     throw new Error('No port specified! Please re-run command with a PORT env var present.');
 }
 
+// Set up session
+const sessionStore = new (mongoSession(session))({
+    uri: config.dbUri,
+    collection: 'sessions'
+});
+sessionStore.on('error', error => {
+    console.error(error);
+});
+app.set('trust proxy', 1); // trust first proxy
+app.use(session({
+    secret: config.sessionSecret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: !__DEVELOPMENT__ },
+    store: sessionStore
+}));
+
 app.use(compression());
+app.use(bodyParser.json());
 
 // Use static files
 app.use('/.well-known', Express.static(path.join('.well-known'), {
@@ -35,8 +60,9 @@ app.use('/.well-known', Express.static(path.join('.well-known'), {
 }));
 app.use('/public', Express.static(path.join('public')));
 
-// app.post('/api/login');
-// app.post('/api/logout');
+app.use(['/api', '/api/*'], apiController);
+app.use('/api/login', loginController);
+app.use('/api/logout', logoutController);
 
 app.use((req, res, next) => {
     if (__DEVELOPMENT__) {
