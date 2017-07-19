@@ -25,9 +25,8 @@ function main() {
         console.log('');
         console.log('Running unit tests'.blue);
 
-        const mochaCmd = './node_modules/.bin/mocha -w -R inverse-dot src/**/*.test.js';
+        const mochaCmd = './node_modules/.bin/mocha --compilers js:babel-core/register -w -R inverse-dot "src/**/*.test.js"';
         console.log(mochaCmd.yellow);
-
         exec(mochaCmd);
 
         console.log('Done'.green);

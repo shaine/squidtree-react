@@ -41,7 +41,7 @@ try {
         }))}
         history={history}
     >
-        {getRoutes(store)}
+        {getRoutes(store.getState())}
     </Router>);
 
     ReactDOM.render(

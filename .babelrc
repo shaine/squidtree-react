@@ -11,16 +11,8 @@
     "env": {
         "development": {
             "plugins": [
-                "typecheck",
-                ["react-transform", {
-                    "transforms": [{
-                        "transform": "react-transform-catch-errors",
-                        "imports": [
-                            "react",
-                            "redbox-react"
-                        ]
-                    }]
-                }]]
+                "typecheck"
+            ]
         },
         "production": {
             "plugins": [
