@@ -21,13 +21,7 @@ var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./w
 
 // http://jlongster.com/Backend-Apps-with-Webpack--Part-I
 var externalMatchers = [
-    /farmhash/,
-    /^express/,
-    /isomorphic-fetch/,
-    /proxy-agent/,
-    /sodium/,
-    /mongoose/,
-    /require_optional/
+    /.*/
 ];
 var nodeModules = {};
 fs.readdirSync('node_modules')

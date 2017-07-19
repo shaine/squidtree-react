@@ -7,6 +7,7 @@ import BlogList from 'App/Blog/BlogList';
 import BlogPost from 'App/Blog/BlogPost';
 import About from 'App/About/About';
 import Login from 'App/Login/Login';
+import Radar from 'App/Radar/Radar';
 import ErrorPage from 'App/Error/Error';
 
 export const PRIVATE_BLOG = 'PRIVATE_BLOG';
@@ -35,6 +36,9 @@ export default () => {
             {/* Session
             {<Route path="/login" component={Login} />}
             */}
+
+            {/* Technology Radars */}
+            {<Route path="/radar(/:date)" component={Radar} />}
 
             {/* Errors */}
             {<Route path="*" component={ErrorPage} status={404} />}
