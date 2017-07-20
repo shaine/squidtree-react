@@ -25,7 +25,9 @@ import logoutController from 'controllers/logoutController';
 import session from 'express-session';
 import mongoSession from 'connect-mongodb-session';
 import bodyParser from 'body-parser';
+import { loadConfig } from 'App/Config/actions';
 import config from '../config.json';
+import flags from '../flags.json';
 
 const app = new Express();
 const server = new http.Server(app);
@@ -61,8 +63,10 @@ app.use('/.well-known', Express.static(path.join('.well-known'), {
 app.use('/public', Express.static(path.join('public')));
 
 app.use(['/api', '/api/*'], apiController);
-app.use('/api/login', loginController);
-app.use('/api/logout', logoutController);
+if (flags['login.enabled']) {
+    app.use('/api/login', loginController);
+    app.use('/api/logout', logoutController);
+}
 
 app.use((req, res, next) => {
     if (__DEVELOPMENT__) {
@@ -76,7 +80,9 @@ app.use((req, res, next) => {
     const store = createStore(memoryHistory);
     const history = syncHistoryWithStore(memoryHistory, store);
 
-    match({ history, routes: getRoutes(), location: req.originalUrl }, (err, redirect, props) => {
+    store.dispatch(loadConfig(flags));
+
+    match({ history, routes: getRoutes(store.getState()), location: req.originalUrl }, (err, redirect, props) => {
         if (redirect) {
             res.redirect(redirect.pathname + redirect.search);
         } else if (err) {
