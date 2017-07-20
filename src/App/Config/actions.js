@@ -6,4 +6,4 @@ exports.loadConfig = function loadConfig(config) {
         type: CONFIG_LOAD,
         config
     };
-}
+};

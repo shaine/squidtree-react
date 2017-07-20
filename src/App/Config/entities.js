@@ -5,7 +5,7 @@ const {
     CONFIG_LOAD
 } = require('./actions');
 
-exports.configReducer = function configReducer(state, action) {
+exports.configReducer = function configReducer(state = {}, action) {
     switch (action.type) {
         case CONFIG_LOAD: {
             // We don't care about the old config, just replace it
