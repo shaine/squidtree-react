@@ -84,6 +84,7 @@ module.exports = {
         loaders: [
             { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel?' + JSON.stringify(babelLoaderQuery), 'eslint-loader']},
             { test: /\.json$/, loader: 'json-loader' },
+            { test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]!sass' },
             { test: /\.less$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!postcss!less?outputStyle=expanded&sourceMap' },
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'html!svgo?useConfig=svgoConfig' },
             { test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240' }
@@ -91,14 +92,14 @@ module.exports = {
     },
     postcss: function (webpack) {
         return [
-            require("postcss-import")({ addDependencyTo: webpack }),
-            require("postcss-url")(),
-            require("postcss-cssnext")(),
+            require('postcss-import')({ addDependencyTo: webpack }),
+            require('postcss-url')(),
+            require('postcss-cssnext')(),
             // add our "plugins" here
             // and if we want to compress,
             // just use css-loader option that already use cssnano under the hood
-            require("postcss-browser-reporter")(),
-            require("postcss-reporter")()
+            require('postcss-browser-reporter')(),
+            require('postcss-reporter')()
         ]
     },
     svgoConfig: {

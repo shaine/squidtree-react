@@ -245,7 +245,7 @@ const Radar = function (size, radar) {
     group.append('text')
       .attr('x', x)
       .attr('y', y + 4)
-      .attr('class', 'blip-text')
+      .attr('class', 'blip-text blip-' + order)
       // derive font-size from current blip width
       .style('font-size', ((blip.width * 10) / 22) + 'px')
       .attr('text-anchor', 'middle')

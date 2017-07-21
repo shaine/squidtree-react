@@ -39,7 +39,7 @@ function createRadar(data) {
             radar.addQuadrant(quadrant)
         });
 
-        var size = (window.innerHeight - 133) < 620 ? 620 : window.innerHeight - 133;
+        var size = 600;
 
         new GraphingRadar(size, radar).init().plot();
 

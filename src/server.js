@@ -27,7 +27,13 @@ import mongoSession from 'connect-mongodb-session';
 import bodyParser from 'body-parser';
 import { loadConfig } from 'App/Config/actions';
 import config from '../config.json';
-import flags from '../flags.json';
+import defaultFlags from '../flags.json';
+import flagOverrides from '../flag-overrides.json';
+
+const flags = {
+    ...defaultFlags,
+    ...flagOverrides
+};
 
 const app = new Express();
 const server = new http.Server(app);
