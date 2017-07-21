@@ -1,9 +1,9 @@
-const { describe, it } = require('mocha');
-const { expect } = require('chai');
-const {
+import { describe, it } from 'mocha';
+import { expect } from 'chai';
+import {
     hashPassword,
     verifyPassword
-} = require('./password');
+} from './password';
 
 describe('password', () => {
     let hash;

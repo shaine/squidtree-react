@@ -1,9 +1,9 @@
-const _isEqual = require('lodash/isEqual');
-const _get = require('lodash/get');
-const { createSelector } = require('reselect');
-const {
+import _isEqual from 'lodash/isEqual';
+import _get from 'lodash/get';
+import { createSelector } from 'reselect';
+import {
     CONFIG_LOAD
-} = require('./actions');
+} from './actions';
 
 exports.configReducer = function configReducer(state = {}, action) {
     switch (action.type) {

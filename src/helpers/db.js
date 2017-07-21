@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const {
+import mongoose from 'mongoose';
+import {
     dbUri
-} = require('../../config.json');
+} from '../../config.json';
 
 module.exports = function connect(cb) {
     mongoose.connect(dbUri);

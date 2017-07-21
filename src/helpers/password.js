@@ -1,4 +1,4 @@
-const sodium = require('sodium').api;
+import { api as sodium } from 'sodium';
 
 exports.hashPassword = function hashPassword(password) {
     const passwordBuffer = new Buffer(password);

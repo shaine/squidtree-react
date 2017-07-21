@@ -1,5 +1,5 @@
-const _get = require('lodash/get');
-const User = require('../models/User');
+import _get from 'lodash/get';
+import User from '../models/User';
 
 module.exports = function loginController(req, res) {
     const session = req.session;

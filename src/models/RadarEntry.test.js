@@ -1,8 +1,8 @@
-const { describe, it } = require('mocha');
-const chai = require('chai');
-const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
-const proxyquire = require('proxyquire');
+import { describe, it } from 'mocha';
+import chai from 'chai';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+import proxyquire from 'proxyquire';
 
 const { expect } = chai;
 chai.use(sinonChai);

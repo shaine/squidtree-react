@@ -1,17 +1,17 @@
-const { describe, it } = require('mocha');
-const chai = require('chai');
-const sinonChai = require('sinon-chai');
-const deepFreeze = require('deep-freeze');
-const {
+import { describe, it } from 'mocha';
+import chai from 'chai';
+import sinonChai from 'sinon-chai';
+import deepFreeze from 'deep-freeze';
+import {
     configReducer,
     getConfig,
     getConfigByName
-} = require('./entities');
-const {
+} from './entities';
+import {
     CONFIG_LOAD
-} = require('./actions');
-const itReturnsTheSameStateIdentityWhenNoStateChange = require('../../helpers/itReturnsTheSameStateIdentityWhenNoStateChange');
-const describeSimpleSelector = require('../../helpers/describeSimpleSelector');
+} from './actions';
+import itReturnsTheSameStateIdentityWhenNoStateChange from '../../helpers/itReturnsTheSameStateIdentityWhenNoStateChange';
+import describeSimpleSelector from '../../helpers/describeSimpleSelector';
 
 const { expect } = chai;
 chai.use(sinonChai);

@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
-const _pick = require('lodash/pick');
-const {
+import mongoose from 'mongoose';
+import _pick from 'lodash/pick';
+import {
     hashPassword,
     verifyPassword
-} = require('../helpers/password');
+} from '../helpers/password';
 
 const ROLE_ADMIN = 'admin';
 const USER_FIELDS = [

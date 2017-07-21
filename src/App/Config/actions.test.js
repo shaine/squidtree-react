@@ -1,10 +1,10 @@
-const { describe, it } = require('mocha');
-const chai = require('chai');
-const sinonChai = require('sinon-chai');
-const {
+import { describe, it } from 'mocha';
+import chai from 'chai';
+import sinonChai from 'sinon-chai';
+import {
     CONFIG_LOAD,
     loadConfig
-} = require('./actions');
+} from './actions';
 
 const { expect } = chai;
 chai.use(sinonChai);

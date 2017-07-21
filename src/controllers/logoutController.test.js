@@ -1,8 +1,8 @@
-const { describe, it } = require('mocha');
-const chai = require('chai');
-const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
-const logoutController = require('./logoutController');
+import { describe, it } from 'mocha';
+import chai from 'chai';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+import logoutController from './logoutController';
 
 const { expect } = chai;
 chai.use(sinonChai);

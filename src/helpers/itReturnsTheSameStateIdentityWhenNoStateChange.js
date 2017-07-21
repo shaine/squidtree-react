@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const deepFreeze = require('deep-freeze');
+import { expect } from 'chai';
+import deepFreeze from 'deep-freeze';
 
 /**
  * Tests that the given reducer returns the same exact object, without modification,
@@ -65,4 +65,4 @@ module.exports = function itReturnsTheSameStateIdentityWhenNoStateChange(reducer
         expect(newState)
             .to.equal(oldState);
     });
-}
+};
