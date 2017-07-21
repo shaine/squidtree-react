@@ -15,24 +15,6 @@ const QUADRANTS = [
 ];
 
 const radarSnapshotSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    quadrant: {
-        type: String,
-        enum: QUADRANTS,
-        required: true
-    },
-    rings: {
-        type: String,
-        enum: RINGS,
-        required: true
-    },
     createdAt: { type: Date, default: Date.now }
 });
 
@@ -43,4 +25,12 @@ exports.createRadarSnapshot = function createRadarSnapshot(cb) {
 
     const radarSnapshot = new RadarSnapshot(radarSnapshotInfo);
     radarSnapshot.save(cb);
+};
+
+exports.getAllRadarSnapshots = function getAllRadarSnapshots(cb) {
+    RadarSnapshot.find({}, null, {
+        sort: {
+            createdAt: -1
+        }
+    }, cb);
 };

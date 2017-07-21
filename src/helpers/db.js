@@ -9,12 +9,12 @@ module.exports = function connect(cb) {
 
     db.on('error', error => {
         console.error('DB connection error', error);
-        cb(error);
+        cb && cb(error);
     });
 
     db.once('open', () => {
         console.info('----\n==> ✅  Connected to DB');
-        cb(null, db);
+            cb && cb(null, db);
     });
 
     return db;

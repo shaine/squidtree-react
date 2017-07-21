@@ -37,6 +37,7 @@ const radarEntrySchema = mongoose.Schema({
 });
 
 const RadarEntry = mongoose.model('RadarEntry', radarEntrySchema);
+exports.RadarEntry = RadarEntry;
 
 exports.createRadarEntry = function createRadarEntry({
     name,
@@ -54,3 +55,7 @@ exports.createRadarEntry = function createRadarEntry({
     const radarEntry = new RadarEntry(radarEntryInfo);
     radarEntry.save(cb);
 };
+
+exports.getRadarEntriesForDate = function getRadarEntriesForDate(date) {
+
+}

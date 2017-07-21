@@ -51,4 +51,14 @@ describe('RadarEntry', () => {
             RadarEntryStub.reset();
         });
     });
+
+    describe('getRadarEntriesForDate', () => {
+        it('returns radar entries since the last radar snapshot');
+
+        it('returns all radar entries before the first radar snapshot');
+
+        it('returns all radar entries after the last radar snapshot if no date');
+
+        it('returns an error if date does not match a radar snapshot');
+    });
 });

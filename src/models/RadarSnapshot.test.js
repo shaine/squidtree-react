@@ -8,7 +8,7 @@ const { expect } = chai;
 chai.use(sinonChai);
 
 const RadarSnapshotStub = sinon.stub();
-RadarSnapshotStub.findOne = sinon.stub();
+RadarSnapshotStub.find = sinon.stub();
 RadarSnapshotStub.prototype.save = sinon.stub();
 const mongooseStub = {
     Schema: sinon.stub().returns('foo schema'),
@@ -18,12 +18,17 @@ mongooseStub.Schema.Types = {
     ObjectId: 'ObjectId'
 };
 const {
-    createRadarSnapshot
+    createRadarSnapshot,
+    getAllRadarSnapshots
 } = proxyquire('./RadarSnapshot', {
     mongoose: mongooseStub
 });
 
 describe('RadarSnapshot', () => {
+    beforeEach(() => {
+        RadarSnapshotStub.reset();
+    });
+
     describe('createRadarSnapshot', () => {
         it('instantiates, saves, and returns a new radar snapshot', () => {
             // Set up
@@ -32,23 +37,29 @@ describe('RadarSnapshot', () => {
             // Run unit
             createRadarSnapshot(cbStub);
 
+            // Verify expectations
             expect(RadarSnapshotStub.prototype.save)
                 .to.have.been.calledWith(cbStub);
             expect(RadarSnapshotStub)
                 .to.have.been.called;
-
-            // Tear down
-            RadarSnapshotStub.reset();
         });
     });
 
-    describe('getRadarEntriesForDate', () => {
-        it('returns radar entries since the last radar snapshot');
+    describe('getAllRadarSnapshots', () => {
+        it('returns all radar snapshots', () => {
+            // Set up
+            const cbStub = sinon.stub();
 
-        it('returns all radar entries before the first radar snapshot');
+            // Run unit
+            getAllRadarSnapshots(cbStub);
 
-        it('returns all radar entries after the last radar snapshot if no date');
-
-        it('returns an error if date does not match a radar snapshot');
+            // Verify expectations
+            expect(RadarSnapshotStub.find)
+                .to.have.been.calledWith({}, null, {
+                    sort: {
+                        createdAt: -1
+                    }
+                }, cbStub);
+        });
     });
 });
