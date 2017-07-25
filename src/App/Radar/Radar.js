@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import createRadar from 'App/Radar/graph/util/factory';
-import './graph/stylesheets/base.scss';
 import data from '../../../radar.json';
+import './graph/stylesheets/base.scss';
 
 export default class Radar extends Component {
     componentDidMount() {
