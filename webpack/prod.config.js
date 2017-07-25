@@ -48,6 +48,7 @@ var baseWebpackConfig = {
         loaders: [
             { test: /\.jsx?$/, exclude: /node_modules/, loaders: [strip.loader('debug'), 'babel']},
             { test: /\.json$/, loader: 'json-loader' },
+            { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap&localIdentName=[local]!sass') },
             { test: /\.less$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap!postcss!less?outputStyle=expanded&sourceMap=true&sourceMapContents=true') },
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'html!svgo?useConfig=svgoConfig' },
             { test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240' }

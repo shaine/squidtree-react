@@ -4,7 +4,7 @@
   "description": "Shaine Hatch's React experiments",
   "main": "index.js",
   "scripts": {
-    "build": "./scripts/server/prod-build.js",
+    "build": "yarn install && ./scripts/server/prod-build.js && pm2 restart squidtree",
     "dev": "SCRIPTY_PARALLEL=true SCRIPTY_SILENT=true scripty",
     "mocha": "SCRIPTY_SILENT=true scripty",
     "lint": "SCRIPTY_SILENT=true scripty",
