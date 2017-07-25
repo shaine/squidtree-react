@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
+import Color from 'color';
+import ColorTime from 'color-time';
 
 const domain = 'https://www.squidtree.com/';
 
@@ -16,6 +18,20 @@ function mapStateToProps(state, { redialProps }) {
         serializedStore
     };
 }
+
+const colorTimeConfig = {
+    34: '#0099CC',
+    124: '#009933',
+    157: '#c2c021',
+    170: '#ca8d17',
+    217: '#CC0066',
+    maxAgeYears: 15,
+    maxAgeFilterPercentage: 0.9,
+    agingFn: 'greyscale'
+};
+const colorTime = ColorTime(colorTimeConfig);
+const color = colorTime();
+const backgroundColor = Color(color).darken(0.6).hexString();
 
 export const Html = ({
     assets,
@@ -32,12 +48,15 @@ export const Html = ({
     const publicPath = __DEVELOPMENT__ ? '' : `${domain}public/`;
 
     const css = `
-        #app {
-            box-sizing: border-box;
+        body {
+            background-color: ${backgroundColor};
             color: #fff;
             font-family: "Helvetica Neue", Helvetica, sans-serif;
             font-size: 16px;
-            height: 100%;
+        }
+
+        #app {
+            box-sizing: border-box;
             left: 0px;
             padding: 0 10px;
             position: absolute;

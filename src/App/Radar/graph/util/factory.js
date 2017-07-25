@@ -6,6 +6,8 @@ const _ = {
     each: require('lodash/each')
 };
 
+const MAX_SIZE = 600;
+
 const Radar = require('../models/radar');
 const Quadrant = require('../models/quadrant');
 const Ring = require('../models/ring');
@@ -39,7 +41,7 @@ function createRadar(data) {
             radar.addQuadrant(quadrant)
         });
 
-        var size = 600;
+        var size = MAX_SIZE;
 
         new GraphingRadar(size, radar).init().plot();
 

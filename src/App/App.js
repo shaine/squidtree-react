@@ -16,6 +16,8 @@ const colorTimeConfig = {
     agingFn: 'greyscale'
 };
 const colorTime = ColorTime(colorTimeConfig);
+const color = colorTime();
+const backgroundColor = Color(color).darken(0.6).hexString();
 
 const meta = {
     titleTemplate: '%s | Squidtree',
@@ -29,18 +31,13 @@ const meta = {
     ],
     link: [
         { rel: 'dns-prefetch', href: 'https://www.squidtree.com' }
-    ]
+    ],
+    color: backgroundColor
 };
 
 const App = ({ children }) => {
-    const color = colorTime();
-
-    const appStyle = {
-        backgroundColor: Color(color).darken(0.6).hexString()
-    };
-
     return (
-        <div id="app" style={appStyle}>
+        <div id="app">
             <Helmet
                 {...meta}
             />

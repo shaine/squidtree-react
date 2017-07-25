@@ -320,7 +320,7 @@ const Radar = function (size, radar) {
     var triangleKey = "New or moved";
     var circleKey = "No change";
 
-    var container = d3.select('svg').append('g')
+    var container = d3.select('#radar-plot').append('g')
       .attr('class', 'legend legend'+"-"+order);
 
     var x = 10;
@@ -445,7 +445,7 @@ const Radar = function (size, radar) {
     d3.selectAll('.quadrant-table.' + order).classed('selected', true);
     d3.selectAll('.blip-item-description').classed('expanded', false);
 
-    var scale = 2;
+    var scale = 1.5;
 
     var adjustX = Math.sin(toRadian(startAngle)) - Math.cos(toRadian(startAngle));
     var adjustY = Math.cos(toRadian(startAngle)) + Math.sin(toRadian(startAngle));
