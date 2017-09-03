@@ -31,7 +31,6 @@ const colorTimeConfig = {
 };
 const colorTime = ColorTime(colorTimeConfig);
 const color = colorTime();
-const backgroundColor = Color(color).darken(0.6).hexString();
 
 export const Html = ({
     assets,
@@ -49,8 +48,8 @@ export const Html = ({
 
     const css = `
         body {
-            background-color: ${backgroundColor};
-            color: #fff;
+            background-color: #f7f7f7;
+            color: #333;
             font-family: "Helvetica Neue", Helvetica, sans-serif;
             font-size: 16px;
         }
@@ -71,8 +70,13 @@ export const Html = ({
         }
 
         a:link, a:visited {
-            color: #fff;
+            color: #666;
             text-decoration: none;
+        }
+
+        a:active, a:hover {
+            color: ${color};
+            text-decoration: underline;
         }
 
         .nav {

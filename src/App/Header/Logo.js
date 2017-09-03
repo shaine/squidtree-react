@@ -3,7 +3,7 @@ import Color from 'color';
 
 const Logo = ({ color }) => {
     const foregroundColor = Color(color).whiteness(0).black(0).hexString();
-    const backgroundColor = Color(color).darken(0.35).hexString();
+    const backgroundColor = Color(color).darken(0.15).desaturate(0.3).hexString();
 
     return (
         <svg
@@ -19,7 +19,7 @@ const Logo = ({ color }) => {
             <g>
                 <g>
                     <path
-                        fill="#FFFFFF"
+                        fill="#666666"
                         d="M7.093,0c-2.086,0-3.79,0.655-5.111,1.966S0,4.966,0,7.036v9.312l10.639,17.451v9.468
                         c0,0.823-0.375,1.577-1.124,2.263c-0.75,0.687-1.545,1.029-2.388,1.029c-0.937,0-1.767-0.33-2.492-0.991
                         c-0.726-0.661-1.089-1.426-1.089-2.294v-5.405H0v5.419c0,2.104,0.765,3.818,2.294,5.144c1.391,1.188,2.99,1.784,4.798,1.784

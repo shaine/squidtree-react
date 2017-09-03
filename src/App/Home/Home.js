@@ -6,8 +6,6 @@ import Nav from 'App/Header/Nav';
 const Home = () => {
     return (
         <div className="homePage">
-            <h1>Shaine Hatch-related stuff</h1>
-
             <Nav />
         </div>
     );
