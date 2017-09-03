@@ -35,7 +35,7 @@ export default state => {
             {getConfigByName(state, 'login.enabled') && <Route path="/login" component={Login} />}
 
             {/* Technology Radars */}
-            {getConfigByName(state, 'radar.enabled') && <Route path="/radar(/:date)" component={Radar} />}
+            {getConfigByName(state, 'radar.enabled') && <Route path="/radar(/:year-:month)" component={Radar} />}
 
             {/* Errors */}
             {<Route path="*" component={ErrorPage} status={404} />}

@@ -8,7 +8,7 @@ const { expect } = chai;
 chai.use(sinonChai);
 
 const RadarEntryStub = sinon.stub();
-RadarEntryStub.findOne = sinon.stub();
+RadarEntryStub.find = sinon.stub();
 RadarEntryStub.prototype.save = sinon.stub();
 const mongooseStub = {
     Schema: sinon.stub().returns('foo schema'),
@@ -18,7 +18,8 @@ mongooseStub.Schema.Types = {
     ObjectId: 'ObjectId'
 };
 const {
-    createRadarEntry
+    createRadarEntry,
+    getRadarEntriesForDates
 } = proxyquire('./RadarEntry', {
     mongoose: mongooseStub
 });
@@ -41,10 +42,10 @@ describe('RadarEntry', () => {
                 .to.have.been.calledWith(cbStub);
             expect(RadarEntryStub)
                 .to.have.been.calledWith({
-                name: 'Foo',
-                description: 'bar',
-                quadrant: 'tools',
-                ring: 'adopt'
+                    name: 'Foo',
+                    description: 'bar',
+                    quadrant: 'tools',
+                    ring: 'adopt'
                 });
 
             // Tear down
@@ -52,13 +53,46 @@ describe('RadarEntry', () => {
         });
     });
 
-    describe('getRadarEntriesForDate', () => {
-        it('returns radar entries since the last radar snapshot');
+    describe('getRadarEntriesForDates', () => {
+        beforeEach(() => {
+            RadarEntryStub.find.reset();
+        });
 
-        it('returns all radar entries before the first radar snapshot');
+        it('returns radar entries between the dates', () => {
+            // Run unit
+            getRadarEntriesForDates('2017-04-19', '2017-04-21', 'callback');
 
-        it('returns all radar entries after the last radar snapshot if no date');
+            // Verify expectations
+            expect(RadarEntryStub.find).to.have.been.calledWith({
+                createdAt: {
+                    $gte: new Date('2017-04-19'),
+                    $lt: new Date('2017-04-21')
+                }
+            }, null, { sort: { createdAt: -1 } }, 'callback');
+        });
 
-        it('returns an error if date does not match a radar snapshot');
+        it('returns all radar entries before the end date if no start date', () => {
+            // Run unit
+            getRadarEntriesForDates(null, '2017-04-21', 'callback');
+
+            // Verify expectations
+            expect(RadarEntryStub.find).to.have.been.calledWith({
+                createdAt: {
+                    $lt: new Date('2017-04-21')
+                }
+            }, null, { sort: { createdAt: -1 } }, 'callback');
+        });
+
+        it('returns all radar entries after the start date if no end date', () => {
+            // Run unit
+            getRadarEntriesForDates('2017-04-21', null, 'callback');
+
+            // Verify expectations
+            expect(RadarEntryStub.find).to.have.been.calledWith({
+                createdAt: {
+                    $gte: new Date('2017-04-21')
+                }
+            }, null, { sort: { createdAt: -1 } }, 'callback');
+        });
     });
 });

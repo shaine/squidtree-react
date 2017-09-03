@@ -1,0 +1,127 @@
+[{
+    "name": "MongoDB",
+    "quadrant": "languages & frameworks",
+    "ring": "adopt",
+    "isNew": "false",
+    "description": "A staple for any simple small or medium project, Mongo is great for storing data that is not highly interconnected. It prefers deferring data coordination to the application modeling layer rather than enabling efficient coordination logic."
+}, {
+    "name": "Elm",
+    "quadrant": "languages & frameworks",
+    "ring": "assess",
+    "isNew": "true",
+    "description": "Elm is an up-and-coming front end language well-suited for single page applications. Its mixture of functional approach, strict typing, and compilation help identify problems long before they reach the end user."
+}, {
+    "name": "Elixir",
+    "quadrant": "languages & frameworks",
+    "ring": "assess",
+    "isNew": "true",
+    "description": "TBD"
+}, {
+    "name": "Phoenix",
+    "quadrant": "languages & frameworks",
+    "ring": "assess",
+    "isNew": "true",
+    "description": "TBD"
+}, {
+    "name": "Architectural Product Management",
+    "quadrant": "techniques",
+    "ring": "trial",
+    "isNew": "true",
+    "description": "As external products are managed and delivered specifically for the resulting customer, architectural groups may benefit from being treated the same, but for internal users. User research, interviews, KPIs, etc greatly increase the efficacy of an architecture group."
+}, {
+    "name": "Backbone/Marionette",
+    "quadrant": "languages & frameworks",
+    "ring": "hold",
+    "isNew": "false",
+    "description": "Backbone and its counterpart Marionette were critical in launching the single page application revolution. As older approaches like jQuery fall out of practice, Backbone's usefulness also declines as more strict stratification philosophies like React and Redux take hold."
+}, {
+    "name": "PHP",
+    "quadrant": "languages & frameworks",
+    "ring": "hold",
+    "isNew": "false",
+    "description": "While PHP has made many great steps to regain ground against competitors in recent years, its primary use is now a function of its ecosystem (like Wordpress and Wikimedia products) moreseo than its intrinsic usefulness. Advancements in communities like JavaScript and Elixir continue to reduce the usefulness of PHP."
+}, {
+    "name": "Yarn",
+    "quadrant": "tools",
+    "ring": "adopt",
+    "isNew": "true",
+    "description": "For a vast majority of use cases, Yarn beats npm in terms of performance and utility. In the cases where it is not a drop-in replacement for npm, it helpfully offers a refined replacement - or in certain minority  complex private ecosystems, simply does not meet internal requirements."
+}, {
+    "name": "Architectural Decision Records",
+    "quadrant": "techniques",
+    "ring": "adopt",
+    "isNew": "false",
+    "description": "Architectural Decision Records are a must-have for any team that wants to have a long-term codebase offering a history of decisions or which benefits from generating consensus among team members."
+}, {
+    "name": "Progressive Web Apps",
+    "quadrant": "techniques",
+    "ring": "assess",
+    "isNew": "true",
+    "description": "PWAs are the hot new topic among executives and SEOs. Primarily an optimization on the concept of SPAs, they offer a slightly more refined experience, particularly for repeat users, and even more particularly for Android users. Be wary of expectations about usefulness and understand that these tend to cater to UX and performance edge cases."
+}, {
+    "name": "neovim",
+    "quadrant": "tools",
+    "ring": "trial",
+    "isNew": "true",
+    "description": "Neovim is not a drop-in replacement for vim, but has a fairly similar set up process and offers additional performance and sane defaults for the effort. The hardest part of the switch is researching alternatives to popular, complicated vim-only plugins."
+}, {
+    "name": "grunt",
+    "quadrant": "tools",
+    "ring": "hold",
+    "isNew": "false",
+    "description": "Lacking any sort of piping mechanism and very weak internal state management, grunt is only suitable for the most basic projects that can utilize only plugin default behaviors. Projects requiring lots of custom build process behavior should focus on shell scripts instead."
+}, {
+    "name": "scripty",
+    "quadrant": "tools",
+    "ring": "trial",
+    "isNew": "true",
+    "description": "A simple tool to defer npm scripts to shell script files, scripty is perfect for encouraging a shell-based approach to project scripting."
+}, {
+    "name": "npm scripts",
+    "quadrant": "tools",
+    "ring": "adopt",
+    "isNew": "true",
+    "description": "Opposed to tools like grunt and gulp, writing shell scripts directly and referencing them via npm (and scripty) is a highly maintainable, low-abstraction approach, especially suited for projects that require lots of custom scripting. This approach lets the user write in whatever language they are comfortable with rather than requiring bash or lib-specific abstraction proficiency. JS scripts combined with the npm registry is extremely powerful."
+}, {
+    "name": "Self-documenting scripts",
+    "quadrant": "techniques",
+    "ring": "trial",
+    "isNew": "true",
+    "description": "Integrating a registry system directly inside of JS shell scripts in a project's build system is a great way to create dynamic and accurate documentation for the CLI end user."
+}, {
+    "name": "Python3",
+    "quadrant": "languages & frameworks",
+    "ring": "assess",
+    "isNew": "true",
+    "description": "With the Python ecosystem finally catching up with the Python 3 architecture, it's high time to deprecate Python 2.x scripts. Some work to be done yet to validate that a complete switch is feasible, but it's seeming very positive."
+}, {
+    "name": "React Fiber",
+    "quadrant": "languages & frameworks",
+    "ring": "hold",
+    "isNew": "true",
+    "description": "React Fiber is more or less a performance-focused rewrite of React. There's very little left for the Fiber team to do before consumers to start evaluating it for production usage - they've completed their core redesign at this point, so an official release is imminent."
+}, {
+    "name": "Enzyme",
+    "quadrant": "tools",
+    "ring": "hold",
+    "isNew": "true",
+    "description": "Enzyme is a useful tool for unit testing React components. Potential users should be wary that it requires integration with a headless browser, and that component unit tests are very likely not something they should be doing anyway. The test performance and design problems it introduces are significant enough that potential users should seriously consider what they actually need in a testing system."
+}, {
+    "name": "React",
+    "quadrant": "languages & frameworks",
+    "ring": "adopt",
+    "isNew": "false",
+    "description": "A very strong view layer, particularly useful in isomorphic applications, though not limited to that use."
+}, {
+    "name": "Isomorphic apps",
+    "quadrant": "techniques",
+    "ring": "hold",
+    "isNew": "new",
+    "description": "Perhaps contrary to popular opinion, isomorphic web apps have very limited usage, demarcated by highly complex and dynamic UI behavior combined with important TTFI performance considerations. Almost always better to choose a front end/backend that can share mission-critical code but not be the same applications altogether."
+}, {
+    "name": "Node 8",
+    "quadrant": "platforms",
+    "ring": "trial",
+    "isNew": "true",
+    "description": "It's what comes after node 6!"
+}]

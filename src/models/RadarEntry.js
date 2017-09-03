@@ -28,7 +28,7 @@ const radarEntrySchema = mongoose.Schema({
         enum: QUADRANTS,
         required: true
     },
-    rings: {
+    ring: {
         type: String,
         enum: RINGS,
         required: true
@@ -56,6 +56,18 @@ exports.createRadarEntry = function createRadarEntry({
     radarEntry.save(cb);
 };
 
-exports.getRadarEntriesForDate = function getRadarEntriesForDate(date) {
+exports.getRadarEntriesForDates = function getRadarEntriesForDates(startDateString, endDateString, cb) {
+    const createdAt = {};
 
-}
+    if (startDateString) {
+        createdAt.$gte = new Date(startDateString);
+    }
+
+    if (endDateString) {
+        createdAt.$lt = new Date(endDateString);
+    }
+
+    RadarEntry.find({
+        createdAt
+    }, null, { sort: { createdAt: -1 } }, cb);
+};
