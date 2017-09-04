@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Color from 'color';
 
 const Logo = ({ color }) => {
-    const foregroundColor = Color(color).whiteness(0).black(0).hexString();
+    const foregroundColor = Color(color).hexString();
     const backgroundColor = Color(color).darken(0.15).desaturate(0.3).hexString();
 
     return (

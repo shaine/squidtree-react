@@ -1,23 +1,7 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import Color from 'color';
-import ColorTime from 'color-time';
 import Logo from 'App/Header/Logo';
 import { Link } from 'react-router';
-
-const colorTimeConfig = {
-    34: '#0099CC',
-    124: '#009933',
-    157: '#c2c021',
-    170: '#ca8d17',
-    217: '#CC0066',
-    maxAgeYears: 15,
-    maxAgeFilterPercentage: 0.9,
-    agingFn: 'greyscale'
-};
-const colorTime = ColorTime(colorTimeConfig);
-const color = colorTime();
-const backgroundColor = Color(color).darken(0.6).hexString();
 
 const meta = {
     titleTemplate: '%s | Squidtree',
@@ -31,8 +15,7 @@ const meta = {
     ],
     link: [
         { rel: 'dns-prefetch', href: 'https://www.squidtree.com' }
-    ],
-    color: backgroundColor
+    ]
 };
 
 const App = ({ children }) => {
@@ -44,7 +27,7 @@ const App = ({ children }) => {
 
             <p>
                 <Link to="/">
-                    <Logo color={color} />
+                    <Logo color="#d1c9df" />
                 </Link>
             </p>
 
