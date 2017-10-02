@@ -70,7 +70,7 @@ module.exports = {
     context: path.resolve(__dirname, '..'),
     entry: {
         'client': [
-            'webpack-hot-middleware/client?path=http://' + host + '/__webpack_hmr',
+            'webpack-hot-middleware/client?overlay=false&path=http://' + host + '/__webpack_hmr',
             './src/client.js'
         ]
     },

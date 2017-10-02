@@ -9,6 +9,7 @@ content/*
 TODO.md
 db
 core
+config.json
 
 # OSX
 .DS_Store
