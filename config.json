@@ -1,7 +1,0 @@
-{
-    "dbUri": "mongodb://localhost:27017/squidtree_discord",
-    "sessionSecret": "",
-    "port": 8082,
-    "devPort": 8083,
-    "devHost": ""
-}

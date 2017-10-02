@@ -4,6 +4,7 @@ import { routerMiddleware } from 'react-router-redux';
 import reduxThunk from 'redux-thunk';
 import reduxCatch from 'redux-catch';
 import reducer from 'App/reducer';
+import actionLogger from './middleware/actionLogger';
 
 function middlewareHandler(error) {
     console.log(error);
@@ -16,7 +17,8 @@ export default function createStore(history, data) {
     const middleware = [
         reduxCatch(middlewareHandler),
         reduxThunk,
-        reduxRouterMiddleware
+        reduxRouterMiddleware,
+        actionLogger
     ];
 
     let finalCreateStore;

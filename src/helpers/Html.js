@@ -60,7 +60,6 @@ export const Html = ({
         }
 
         a:active, a:hover {
-            color: #d1c9df;
             text-decoration: underline;
         }
 
