@@ -7560,9 +7560,9 @@ text-table@^0.2.0, text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
 
-the-color-of-air-continuous@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/the-color-of-air-continuous/-/the-color-of-air-continuous-0.3.0.tgz#9fef976203a94056cc9d2550b8d387e3705e249c"
+the-color-of-air-continuous@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/the-color-of-air-continuous/-/the-color-of-air-continuous-0.3.1.tgz#a15e83ca158f78412dd705c155b10ef361a85c6f"
   dependencies:
     color "^2.0.0"
 

@@ -11,13 +11,18 @@ import {
 export function colorReducer(state = {}, action) {
     switch (action.type) {
         case WEATHER_LOAD_SUCCESS: {
-            const temperature = _get(action, 'content.main.temp');
+            const temperatureMin = _get(action, 'content.main.temp_min');
+            const temperatureMax = _get(action, 'content.main.temp_max');
+            const temperatureCurrent = _get(action, 'content.main.temp');
+            const temperatureAverage = (temperatureMin + temperatureMax) / 2;
+            console.log(temperatureMin, temperatureMax, temperatureAverage);
 
             return {
-                temperature,
-                temperatureMin: _get(action, 'content.main.temp_min'),
-                temperatureMax: _get(action, 'content.main.temp_max'),
-                color: colorOfAir('c', temperature)
+                temperature: temperatureAverage,
+                temperatureMin,
+                temperatureMax,
+                temperatureCurrent,
+                color: colorOfAir('c', temperatureAverage)
             };
         }
 

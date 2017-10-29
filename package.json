@@ -62,7 +62,7 @@
     "shallow-equals": "0.0.0",
     "slugify": "^1.1.0",
     "sodium": "^2.0.1",
-    "the-color-of-air-continuous": "^0.3.0",
+    "the-color-of-air-continuous": "^0.3.1",
     "tiny-uuid4": "^1.0.1",
     "warning": "^3.0.0",
     "webpack-isomorphic-tools": "^2.2.46"

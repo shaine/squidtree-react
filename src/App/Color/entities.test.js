@@ -31,10 +31,11 @@ describe('Color entities', () => {
             it('stores the current temperature and color', () => {
                 expect(colorReducer({}, weatherLoadSuccessAction))
                     .to.eql({
-                        temperature: 12.02,
+                        temperature: 11.5,
                         temperatureMin: 9,
                         temperatureMax: 14,
-                        color: '#f6b823'
+                        temperatureCurrent: 12.02,
+                        color: '#f8be29'
                     });
             });
         });
